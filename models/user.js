@@ -8,9 +8,12 @@ const reviewSchema = mongoose.Schema({
   review: {
     type: String,
   },
-  profileId: {
-
-  }
+  mentorId: {
+    mentor: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'MentorModel',
+    },
+  },
 })
 
 const userSchema = mongoose.Schema({
