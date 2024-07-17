@@ -39,7 +39,7 @@ async function signup(req, res) {
     if (!req.file)
       return res.status(400).json({ error: "Please Submit a Photo!" });
 
-    const filePath = `sommelier-circle/profile-imgs/${uuidv4()}-${
+    const filePath = `Mentor-List/profile-imgs/${uuidv4()}-${
       req.file.originalname
     }`;
     const params = {
