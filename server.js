@@ -6,6 +6,8 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const morgan = require('morgan');
 
+// const mentorRouter = require('./controllers/mentors.js');
+
 mongoose.connect(process.env.MONGODB_URI);
 
 mongoose.connection.on('connected', () => {

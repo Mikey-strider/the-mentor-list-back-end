@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 
 const mentorSchema = mongoose.Schema({
-  profileId: {
-    type: ObjectId,
-  },
-  profileName: {
+  // mentorId: {
+  //   type: ObjectId,
+  // },
+  mentorName: {
     type: String,
     required: true,
   },

@@ -2,10 +2,14 @@ const express = require('express');
 const router = express.Router();
 const mentorProfile = require('../controllers/mentors');
 
-const verifyToken = require('../middleware/verify-token');
 
 
-router.get('/:userId', verifyToken, mentorProfile.profile);
+router.delete('/:id', mentorProfile.deleteMentor);
+router.put('/:id', mentorProfile.editMentor);
+router.get('/:id', mentorProfile.getMentor);
+router.post('/', mentorProfile.createMentor);
+router.get('/', mentorProfile.indexMentors);
+
 
 
 module.exports = router;
