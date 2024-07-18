@@ -30,13 +30,14 @@ async function profile(req, res) {
 
 async function createMentor(req, res) {
   try {
+    console.log(req.body)
     const createdMentor = await Mentor.create(req.body);
     console.log(createdMentor, '--- created mentor');
     res.status(201).json(createdMentor);
   } catch (err) {
     console.log(err)
     res.status(500).send();
-    throw new Error('Could not create, error!');
+    // throw new Error('Could not create, error!');
   }
 }
 
