@@ -21,7 +21,7 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  password: {
+  hashedPassword: {
     type: String,
     required: true,
   },
@@ -36,6 +36,12 @@ const userSchema = mongoose.Schema({
     type: String,
   },
 })
+
+userSchema.set('toJSON', {
+  transform: (document, returnedObject) => {
+      delete returnedObject.hashedPassword;
+  }
+});
 
 const UserModel = mongoose.model('User', userSchema);
 module.exports = UserModel;

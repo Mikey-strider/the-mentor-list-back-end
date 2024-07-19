@@ -1,5 +1,4 @@
 const UserModel = require('../models/user');
-const express = require('express');
 const Mentor = require('../models/mentor');
 
 

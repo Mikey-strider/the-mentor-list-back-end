@@ -19,14 +19,18 @@ app.use(express.json());
 app.use(morgan());
 
 
-const JwtRouter = require("./routes/jwt");
+const JwtRouter = require("./controllers/jwt");
+const usersRouter = require('./controllers/users');
 const authRouter = require("./routes/auth");
 const mentorRouter = require("./routes/mentors");
+const profilesRouter = require('./controllers/profiles');
 
 
 app.use('/jwt', JwtRouter);
+app.use('/users', usersRouter);
 app.use('/auth', authRouter);
 app.use('/mentors', mentorRouter);
+app.use('/profiles', profilesRouter);
 
 app.listen(3000, () => {
   console.log('The express app is ready!');

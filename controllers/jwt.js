@@ -1,37 +1,31 @@
-const jwt = require('jsonwebtoken')
-// jwt module has two main jobs
-// to Sign tokens
-// to Verify tokens 
+const express = require('express');
+const router = express.Router();
+const jwt = require('jsonwebtoken');
 
 
-module.exports = {
-	sign,
-	verify
-}
-
-function verify(req, res){
-	const token = req.headers.authorization.split(' ')[1];
-
-	// verify our token (decode it!)eventually to add to req.user
-	const decoded = jwt.verify(token, process.env.JWT_SECRET)
-
-	res.json({token})
-}
 
 
-function sign(req, res){
-
-	// simulating a created user from the db
+router.get('/sign-token', (req, res) => {
 	const user = {
 		id: 1,
-		username: 'test'
+		userName: 'test',
+		password: 'test',
+	};
+	const token = jwt.sign({ user }, process.env.JWT_SECRET);
+	// Send the token back to the client
+	res.json({ token });
+});
+
+router.post('/verify-token', (req, res) => {
+	try {
+		const token = req.headers.authorization.split(' ')[1];
+		// Add in verify method
+		const decoded = jwt.verify(token, process.env.JWT_SECRET);
+		res.json({ decoded });
+	} catch (error) {
+		res.status(401).json({ error: 'Invalid token.' });
 	}
-	// after we create a user in the database or find a user in the database
-	// (login/signup) we create our JWT TOKEN
-
-	const token = jwt.sign({ user }, process.env.JWT_SECRET)
+});
 
 
-
-	res.json({ token })
-}
+module.exports = router;
